@@ -1,4 +1,4 @@
-module shift2(DataIn , DataOut);
+module Shift(DataIn , DataOut);
   input [63:0]DataIn;
   output[63:0] DataOut;
   wire [1:0] X = 2'b0;
