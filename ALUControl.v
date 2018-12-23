@@ -8,7 +8,7 @@ module ALUControl (input ALUOp0 , input ALUOp1 ,input [31:0] instruction, output
      
          2'b1x: begin
 
-               casex(instruction)
+               case(instruction)
  
                   11'b10001011000: operation_code = 0010;
                   11'b11001011000: operation_code = 0110;
