@@ -3,7 +3,7 @@ input[n-1:0] data1;
 input[n-1:0] data2;
 input[3:0] ALU_Select;
 output[n-1:0] result;
-output zero;
+output[n-1:0] zero;
 assign output_zero = output_data == 0 ? 1 : 0;
 	always @(*)
 	begin
