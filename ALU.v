@@ -1,9 +1,9 @@
-module ALU#(parameter n = 64)(idata1 , data2 ,ALU_Select ,result ,zero);
-input[n-1:0] data1;
-input[n-1:0] data2;
+module ALU#(parameter n = 63)(idata1 , data2 ,ALU_Select ,result ,zero);
+input[n:0] data1;
+input[n:0] data2;
 input[3:0] ALU_Select;
-output[n-1:0] result;
-output[n-1:0] zero;
+output[n:0] result;
+output[n:0] zero;
 assign output_zero = output_data == 0 ? 1 : 0;
 	always @(*)
 	begin
@@ -16,6 +16,5 @@ assign output_zero = output_data == 0 ? 1 : 0;
 		4'b1100: result = ~(data1 | data2);
 		endcase
 	end
-	assign c = temp[64];
 	assign zero = (output_data == 0) ? 1 : 0;
 endmodule
