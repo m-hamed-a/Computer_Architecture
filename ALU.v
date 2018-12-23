@@ -4,7 +4,6 @@ input[n:0] data2;
 input[3:0] ALU_Select;
 output[n:0] result;
 output[n:0] zero;
-assign output_zero = output_data == 0 ? 1 : 0;
 	always @(*)
 	begin
 		case(ALU_Select)
