@@ -1,7 +1,7 @@
-module MUPX(DataIn1 , DataIn2 , X , DataOut);
-input [63:0]DataIn1;
-input [63:0]DataIn2;
-input X;
-output[63:0] DataOut;
-assign DataOut = (X) ? DataIn1 : DataIn2;
+module MUPX #(parameter n = 63)(DataIn1 , DataIn2 , X , DataOut);
+  input [n:0]DataIn1;
+  input [n:0]DataIn2;
+  input x;
+  output[n:0] DataOut;
+  assign DataOut = (x) ? DataIn1 : DataIn2;
 endmodule
