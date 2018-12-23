@@ -1,4 +1,4 @@
-module ALU#(parameter n = 63)(idata1 , data2 ,ALU_Select ,result ,zero);
+module ALU#(parameter n = 63)(data1 , data2 ,ALU_Select ,result ,zero);
 input[n:0] data1;
 input[n:0] data2;
 input[3:0] ALU_Select;
