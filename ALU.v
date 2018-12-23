@@ -15,5 +15,5 @@ output[n:0] zero;
 		4'b1100: result = ~(data1 | data2);
 		endcase
 	end
-	assign zero = (output_data == 0) ? 1 : 0;
+	assign zero = (result == 0) ? 1 : 0;
 endmodule
