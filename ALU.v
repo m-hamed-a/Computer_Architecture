@@ -7,6 +7,7 @@ output[n:0] zero;
 	always @(*)
 	begin
 		case(ALU_Select)
+		4'b1111: result = 64'bz;
 		4'b0000: result = data1 & data2;
 		4'b0001: result = data1 | data2;
 		4'b0010: result = data1 + data2;
