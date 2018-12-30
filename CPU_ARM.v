@@ -1,23 +1,3 @@
-Skip to content
- 
-Search or jump to…
-
-Pull requests
-Issues
-Marketplace
-Explore
- @MDhamedAH Sign out
-0
-0 0 navidadelpour/ARM-CPU
- Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
-ARM-CPU/CPU.v
-d601d3b  2 days ago
-@saleh26 saleh26 making the cpu look like 315 page book
-@saleh26 @navidadelpour
-     
-140 lines (109 sloc)  3.47 KB
-`default_nettype none
-
 module CPU ();
 
     wire clock, zero_alu, reg_to_loc, alu_src, mem_to_reg, reg_write, mem_read, mem_write, branch, alu_op_1, alu_op_0;
@@ -52,9 +32,9 @@ module CPU ();
     );
 
     Adder pc_adder (
-        .input_data_1(old_pc),
-        .input_data_2(64'b100),
-        .output_data(output_pc_adder)
+        .DataIn1(old_pc),
+        .DataIn2(64'b100),
+        .DataOut(output_pc_adder)
     );
 
     InstructionMemory instruction_memory (
@@ -84,7 +64,7 @@ module CPU ();
         .output_data(output_register_bank_multiplexer)
     );
 
-    RegisterBank register_bank (
+    regBank32x64 register_bank (
         .clock(clock),
         .write(reg_write),
         .input_address_1(instruction[9 : 5]),
@@ -105,34 +85,34 @@ module CPU ();
     ALUControl alu_control_unit (
         .ALUOp0(alu_op_0),
         .ALUOp1(alu_op_1),
-        .instruction_part(instruction[31 : 21]),
+        .instruction(instruction[31 : 21]),
         .operation_code(alu_opcode)
     );
 
-    Multiplexer alu_multiplexer(
-        .input_data_1(reg_data_2),
-        .input_data_2(output_sign_extend),
-        .input_select(alu_src),
-        .output_data(output_alu_multiplexer)
+    MUPX alu_multiplexer(
+        .DataIn1(reg_data_2),
+        .DataIn2(output_sign_extend),
+        .x(alu_src),
+        .DataOut(output_alu_multiplexer)
     );
 
     ALU alu (
-        .input_data_1(reg_data_1),
-        .input_data_2(output_alu_multiplexer),
-        .input_opcode(alu_opcode),
-        .output_data(output_alu),
-        .output_zero(zero_alu)
+        .data1(reg_data_1),
+        .data2(output_alu_multiplexer),
+        .ALU_Select(alu_opcode),
+        .result(output_alu),
+        .zero(zero_alu)
     );
 
-    ShiftUnit shift_unit (
-        .input_data(output_sign_extend), 
-        .output_data(output_shift_unit)
+    Shift shift_unit (
+        .DataIn(output_sign_extend), 
+        .DataOut(output_shift_unit)
     );
 
-    Adder shift_unit_adder(
-        .input_data_1(old_pc),
-        .input_data_2(output_shift_unit),
-        .output_data(output_shift_unit_adder)
+    adder shift_unit_adder(
+        .DataIn1(old_pc),
+        .DataIn2(output_shift_unit),
+        .DataOut(output_shift_unit_adder)
     );
 
 
@@ -149,23 +129,10 @@ module CPU ();
     
 
     Multiplexer data_memory_multiplexer (
-        .input_data_1(output_alu),
-        .input_data_2(output_data_memory),
-        .input_select(mem_to_reg),
-        .output_data(input_data_register)
+        .DataIn1(output_alu),
+        .DataIn2(output_data_memory),
+        .x(mem_to_reg),
+        .DataOut(input_data_register)
     );
 
 endmodule
-© 2018 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
-Press h to open a hovercard with more details.
