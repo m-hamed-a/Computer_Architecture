@@ -1,5 +1,42 @@
-    module CPU();
-    
+Skip to content
+ 
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ @MDhamedAH Sign out
+0
+0 0 navidadelpour/ARM-CPU
+ Code  Issues 0  Pull requests 0  Projects 0  Wiki  Insights
+ARM-CPU/CPU.v
+d601d3b  2 days ago
+@saleh26 saleh26 making the cpu look like 315 page book
+@saleh26 @navidadelpour
+     
+140 lines (109 sloc)  3.47 KB
+`default_nettype none
+
+module CPU ();
+
+    wire clock, zero_alu, reg_to_loc, alu_src, mem_to_reg, reg_write, mem_read, mem_write, branch, alu_op_1, alu_op_0;
+    wire [3 : 0] alu_opcode;
+    wire [4 : 0] output_register_bank_multiplexer;
+    wire [31 : 0] instruction;
+    wire [63 : 0] old_pc, new_pc, output_pc_adder, output_data_memory, output_alu, reg_data_1, reg_data_2, output_alu_multiplexer, input_data_register, output_sign_extend, output_shift_unit, output_shift_unit_adder;
+
+    reg pc_reset;
+
+    initial begin
+        pc_reset = 1; 
+        #100 pc_reset = 0;
+    end
+
+    Clock clock_1(clock);
+
+
+
     Multiplexer pc_multiplexer (
         .input_data_1(output_pc_adder),
         .input_data_2(output_shift_unit_adder),
@@ -119,3 +156,16 @@
     );
 
 endmodule
+© 2018 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Press h to open a hovercard with more details.
