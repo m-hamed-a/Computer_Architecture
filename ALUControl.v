@@ -20,6 +20,7 @@ module ALUControl (input ALUOp0 , input ALUOp1 ,input [31:0] instruction, output
          end
          2'b00: operation_code = 4'b0010;
          2'bx1: operation_code = 4'b0111;
+         default: operation_code = 4'b1111;
 
       endcase
 
