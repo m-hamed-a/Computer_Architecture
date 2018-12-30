@@ -9,7 +9,7 @@ module ControlUnit (instruction,Reg2Loc, ALUSrc, MemtoReg, RegWrite,MemRead, Mem
 
     always @ (instruction) begin
     
-        case(instruction_part)
+        case(instruction)
             11'b1xx0101x000: value = 9'b000100010;
             11'b11111000010: value = 9'bx11110000;
             11'b11111000000: value = 9'b11x001000;
